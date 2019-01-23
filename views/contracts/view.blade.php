@@ -7,171 +7,160 @@
 
 <div id="content">
 
-    <div class="well">
+    <form name="newProduct">
 
         <div class="row">
+            <div class="col-md-6">
 
-            <div class="col-md-12" style="margin: 5px">
-
-                <div class="col-md-4" style="padding: 5px;">
-                    Entreprise
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Entreprise</label>
+                            <span ze-modalsearch="loadCompany"
+                                  data-http="companyHttp"
+                                  data-model="form.name_company"
+                                  data-fields="companyFields"
+                                  data-title="Choisir une entreprise"></span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-md-8">
-                    <select class="form-control">
-                        <option>LH Asiatic</option>
-                        <option>Toronto Numeric</option>
-                        <option>OVH Support</option>
-                    </select>
-                </div>
 
-            </div>
-
-            <div class="col-md-12" style="margin: 5px">
-
-                <div class="col-md-4" style="padding: 5px;">
-                    Contact
-                </div>
-
-                <div class="col-md-8">
-                    <select class="form-control">
-                        <option>M. LEBASHU Samuel</option>
-                        <option>Mme. LAGOUTE Valérie</option>
-                        <option>M. PASCAL Anthony</option>
-                    </select>
-                </div>
-
-            </div>
-
-            <div class="col-md-12" style="margin: 5px">
-
-                <div class="col-md-4" style="padding: 5px;">
-                    Type contrat
-                </div>
-
-                <div class="col-md-8">
-                    <select class="form-control">
-                        <option>Hebdomadaire</option>
-                        <option>Mensuel</option>
-                        <option>Semestriel</option>
-                        <option>Annuel</option>
-                    </select>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Type de contrat</label>
+                            <span   ze-modalsearch="loadTypesContracts"
+                                data-http="typesContractsHttp"
+                                data-model="form.libelle_type_contract"
+                                data-fields="typesContractsFields"
+                                data-title="Choisir un type de contact"></span>
+                        </div>
+                    </div>
                 </div>
 
             </div>
 
-            <div class="col-md-12" style="margin: 5px">
 
-                <div class="col-md-4" style="padding: 5px;">
-                    Tarif (Selon période)
+
+
+            <div class="col-md-6">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Contact</label>
+                            <span ze-modalsearch="loadContact"
+                                  data-http="contactHttp"
+                                  data-model="form.name_contact"
+                                  data-fields="contactFields"
+                                  data-title="Choisir un contact"></span>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-md-8">
-                    <select class="form-control">
-                        <option>36,90 €</option>
-                        <option>54,24 €</option>
-                        <option>87,70 €</option>
-                        <option>112,08 €</option>
-                        <option>141,25 €</option>
-                    </select>
-                </div>
 
-            </div>
 
-            <div class="col-md-12" style="margin: 5px">
-
-                <div class="col-md-4" style="padding: 5px;">
-                    Libellé
-                </div>
-
-                <div class="col-md-8">
-                    <input type="text" placeholder="Ex : La meilleure personne" value="" class="form-control" />
-                </div>
-
-            </div>
-
-            <div class="col-md-12" style="margin: 5px">
-
-                <div class="col-md-4" style="padding: 5px;">
-                    Commentaires
-                </div>
-
-                <div class="col-md-8">
-                    <textarea class="form-control" rows="5"  >
-
-                    </textarea>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Tarif (Selon période)</label>
+                            <select class="form-control">
+                                <option>36,90 €</option>
+                                <option>54,24 €</option>
+                                <option>87,70 €</option>
+                                <option>112,08 €</option>
+                                <option>141,25 €</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
 
             </div>
+        </div>
 
-            <div class="col-md-12" style="margin: 5px">
 
-                <div class="col-md-4" style="padding: 5px;">
-                    Statut
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Libellé</label>
+                    <input type="text" placeholder="Ex : La meilleure personne" value="" class="form-control"/>
                 </div>
+            </div>
+        </div>
 
-                <div class="col-md-8">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Commentaires</label>
+                    <textarea class="form-control" rows="5"></textarea>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label>Statut</label>
                     <select class="form-control">
                         <option>Ouvert</option>
                         <option>Clôturé</option>
                     </select>
                 </div>
-
             </div>
-
-            <div class="col-md-12" style="margin: 5px">
-
-                <div class="col-md-4" style="padding: 5px;">
-                    Date 1ère facturation
-                </div>
-
-                <div class="col-md-8">
-                    <input id="firstFacturation" class="form-control" type="text" value="" placeholder=""  />
-                </div>
-
-            </div>
-
-            <div class="col-md-12" style="margin: 5px">
-
-                <div class="col-md-4" style="padding: 5px;">
-                    Délai renouvellement
-                </div>
-
-                <div class="col-md-8">
-                    <select class="form-control">
-                        <option>Le jour de la date échéance</option>
-                        <option>30 jours avant date échéance</option>
-                        <option>60 jours avant date échéance</option>
-                    </select>
-                </div>
-
-            </div>
-
-            <div class="col-md-offset-4 col-md-8 " style="margin-top: 15px">
-                <div class="col-md-12">
-                    <input type="button" value="Valider" class="btn btn-success pull-right" style="width: 175px; " />
-                    <input type="button" value="Annuler" ng-click="back()" class="btn btn-danger pull-right" style="width: 175px; margin-right: 15px" />
-                </div>
-            </div>
-
         </div>
 
-        <script type="text/css">
 
-            .errorSelect {
-                border: 1px solid red ;
-            }
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Délai renouvellement</label>
+                            <select class="form-control">
+                                <option>Le jour de la date échéance</option>
+                                <option>30 jours avant date échéance</option>
+                                <option>60 jours avant date échéance</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-        </script>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Date 1ère facturation</label>
+                            <input id="firstFacturation" class="form-control" type="text" value="" placeholder=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <script type="text/javascript">
 
-            $(document).ready(function() {
-                $( "#firstFacturation" ).datepicker( $.datepicker.regional[ "fr" ] );
-            });
 
-        </script>
+        <form-buttons></form-buttons>
 
-    </div>
+    </form>
+
+
+    <script type="text/css">
+        .errorSelect {
+            border: 1px solid red;
+        }
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#firstFacturation").datepicker($.datepicker.regional["fr"]);
+        });
+    </script>
 
 </div>

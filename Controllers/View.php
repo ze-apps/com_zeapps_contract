@@ -17,16 +17,29 @@ class View extends Controller
         return view("contracts/liste", $data, BASEPATH . 'App/com_zeapps_contract/views/');
     }
 
-    public function contractConfiguration()
-    {
-        $data = array();
-        return view("contracts/configuration", $data, BASEPATH . 'App/com_zeapps_contract/views/');
-    }
-
     public function contractView()
     {
         $data = array();
         return view("contracts/view", $data, BASEPATH . 'App/com_zeapps_contract/views/');
+    }
+
+    // Types
+    public function contractsTypes()
+    {
+        $data = array();
+        return view("contracts/types/liste", $data, BASEPATH . 'App/com_zeapps_contract/views/');
+    }
+
+    public function contractsFormModal()
+    {
+        $data = array();
+        return view("contracts/types/modal_liste", $data, BASEPATH . 'App/com_zeapps_contract/views/');
+    }
+
+    public function contractsConfig()
+    {
+        $data = array();
+        return view("contracts/types/config", $data, BASEPATH . 'App/com_zeapps_contract/views/');
     }
 
 }

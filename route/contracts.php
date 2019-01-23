@@ -17,8 +17,14 @@ Routeur::get('/com_zeapps_contract/contracts/liste', 'App\\com_zeapps_contract\\
 
 Routeur::post("/com_zeapps_contract/contracts/getAll/{limit}/{offset}/{context}", 'App\\com_zeapps_contract\\Controllers\\Contracts@getAll');
 
-// Configuration
-Routeur::get('/com_zeapps_contract/contracts/configuration', 'App\\com_zeapps_contract\\Controllers\\View@contractConfiguration');
+// Types
+Routeur::get('/com_zeapps_contract/contracts/types/modal_liste', 'App\\com_zeapps_contract\\Controllers\\View@contractsFormModal');
+Routeur::get('/com_zeapps_contract/contracts/types/liste', 'App\\com_zeapps_contract\\Controllers\\View@contractsTypes');
+Routeur::get('/com_zeapps_contract/contracts/types/config', 'App\\com_zeapps_contract\\Controllers\\View@contractsConfig');
+
+// Modal
+Routeur::get('/com_zeapps_contract/contracts/types/modal_liste/', 'App\\com_zeapps_contract\\Controllers\\View@contractsFormModal');
+Routeur::post("/com_zeapps_contract/contracts/modal/{limit}/{offset}", 'App\\com_zeapps_contact\\Controllers\\Contracts@modal');
 
 // Excel
 Routeur::post("/com_zeapps_contract/contracts/make_export/", 'App\\com_zeapps_contract\\Controllers\\Contracts@make_export');

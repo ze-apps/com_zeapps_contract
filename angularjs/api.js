@@ -16,6 +16,9 @@ app.config(["$provide",
                     excel : {
                         make : makeExcel_contract
                     }
+                },
+                types_contracts : {
+                    modal : modal_contract,
                 }
 			};
 
@@ -27,6 +30,8 @@ app.config(["$provide",
             ///////////////////////////////////////////////////////////////////////////////////////////
             /////////////////////////////////////// CONTRACTS /////////////////////////////////////////
             ///////////////////////////////////////////////////////////////////////////////////////////
+
+
 
             function getAll_contract(context, id_contract)
             {
@@ -46,6 +51,10 @@ app.config(["$provide",
             function delete_contract(id)
             {
                 return zeHttp.delete("/com_zeapps_contract/contracts/delete/" + id);
+            }
+
+            function modal_contract(limit, offset, filters){
+                return zeHttp.post("/com_zeapps_contract/contracts/modal/" + limit + "/" + offset, filters);
             }
 
             function context_contract()

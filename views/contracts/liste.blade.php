@@ -18,11 +18,8 @@
                                 color="success open-modalEditContract"
                                 hint="Nouveau"
                                 always-on="true"
-                                {{--href="#modalEditContract"--}}
                                 data-toggle="modal"
                                 ng-click="getContract(0)"></ze-btn>
-                        <span class="pull-left" style="margin-left: 10px"><i class="badge" style="background-color: #b2dba1; color: transparent">-</i>  Ouvert
-                    <i class="badge" style="background-color: #dca7a7; color: transparent">-</i> Cloturé</span>
                     </div>
 
                     <div class="col-md-6 pull-right">
@@ -34,19 +31,21 @@
                         <table id="tableListeContracts" class="table table-hover table-responsive">
                             <thead>
                                 <tr>
-                                    <th class="col-md-3">Interessé</th>
-                                    <th class="col-md-2">Num.</th>
+                                    <th class="col-md-2">Contractant</th>
+                                    <th class="col-md-2">N°</th>
                                     <th class="col-md-3">Libellé</th>
-                                    <th class="col-md-3">Prochaine echéance</th>
+                                    <th class="col-md-2">Statut</th>
+                                    <th class="col-md-2">Prochaine echéance</th>
                                     <th class="col-md-1">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php for($i=0; $i<12; $i++) { ?>
-                                    <tr <?php if ($i%2==0) {echo "style='background-color: #b2dba1'"; }else {echo "style='background-color: #dca7a7'";} ?> >
+                                    <tr>
                                         <td>Entreprise</td>
                                         <td>FR85242565</td>
                                         <td>La meilleure entreprise</td>
+                                        <td><?php if ($i%2 == 0) { echo '<span class="label label-success">Ouvert</span>'; } else { echo '<span class="label label-danger">Clôturé</span>';} ?></td>
                                         <td>15/03/2019</td>
                                         <td>
                                             <ze-btn class="open-modalEditContract"
@@ -68,31 +67,32 @@
                                             ></ze-btn>
                                         </td>
                                     </tr>
-                                    <tr style="background-color: #b2dba1" >
-                                    <td>Contact</td>
-                                    <td>CT00270220</td>
-                                    <td>La meilleure personne</td>
-                                    <td>15/03/2019</td>
-                                    <td>
-                                        <ze-btn class="open-modalEditContract"
-                                                id="edit_copntract"
-                                                fa="pencil"
-                                                href="#modalEditContract"
-                                                data-toggle="modal"
-                                                ng-click="getContract(contract)"
-                                                hint="Modifier"
-                                        ></ze-btn>
-                                        <ze-btn class="open-modalDeleteContract"
-                                                id="delete_contract"
-                                                color="danger"
-                                                ng-click="deleteContract(contract)"
-                                                fa="trash"
-                                                href="#modalDeleteContract"
-                                                data-toggle="modal"
-                                                hint="Supprimer"
-                                        ></ze-btn>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>Contact</td>
+                                        <td>CT00270220</td>
+                                        <td>La meilleure personne</td>
+                                        <td><?php if ($i%2 == 0) { echo '<span class="label label-success">Ouvert</span>'; } else { echo '<span class="label label-danger">Clôturé</span>';} ?></td>
+                                        <td>15/03/2019</td>
+                                        <td>
+                                            <ze-btn class="open-modalEditContract"
+                                                    id="edit_copntract"
+                                                    fa="pencil"
+                                                    href="#modalEditContract"
+                                                    data-toggle="modal"
+                                                    ng-click="getContract(contract)"
+                                                    hint="Modifier"
+                                            ></ze-btn>
+                                            <ze-btn class="open-modalDeleteContract"
+                                                    id="delete_contract"
+                                                    color="danger"
+                                                    ng-click="deleteContract(contract)"
+                                                    fa="trash"
+                                                    href="#modalDeleteContract"
+                                                    data-toggle="modal"
+                                                    hint="Supprimer"
+                                            ></ze-btn>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                             </tbody>
                         </table>

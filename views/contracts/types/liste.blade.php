@@ -1,5 +1,5 @@
 <div id="breadcrumb">
-    Liste des contrats souscrits
+    Liste des contrats types
 </div>
 
 <div id="content">
@@ -18,15 +18,8 @@
                                 color="success open-modalEditContract"
                                 hint="Nouveau"
                                 always-on="true"
-                                href="#modalEditContract"
                                 data-toggle="modal"
-                                ng-click="getSalarie(0)"></ze-btn>
-                        <span class="pull-left" style="margin-left: 10px"><i class="badge" style="background-color: #b2dba1; color: transparent">-</i>  Ouvert
-                    <i class="badge" style="background-color: #dca7a7; color: transparent">-</i> Cloturé</span>
-                    </div>
-
-                    <div class="col-md-6 pull-right">
-                        <ze-filters data-model="filter_model" data-filters="filters" data-update="loadList"></ze-filters>
+                                ng-click="getTypeContract(0)"></ze-btn>
                     </div>
 
                     <div class="col-md-12" style="padding-top: 42px">
@@ -34,33 +27,29 @@
                         <table id="tableListeContracts" class="table table-hover table-responsive">
                             <thead>
                                 <tr>
-                                    <th class="col-md-3">Interessé</th>
-                                    <th class="col-md-2">Num.</th>
-                                    <th class="col-md-3">Libellé</th>
-                                    <th class="col-md-3">Prochaine echéance</th>
-                                    <th class="col-md-1">Action</th>
+                                    <th class="col-md-5">Libellé</th>
+                                    <th class="col-md-5">Actif</th>
+                                    <th class="col-md-2">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php for($i=0; $i<12; $i++) { ?>
-                                    <tr <?php if ($i%2==0) {echo "style='background-color: #b2dba1'"; }else {echo "style='background-color: #dca7a7'";} ?> >
-                                        <td>Entreprise</td>
-                                        <td>FR85242565</td>
-                                        <td>La meilleure entreprise</td>
-                                        <td>15/03/2019</td>
+                                <?php for($i=0; $i<4; $i++) { ?>
+                                    <tr>
+                                        <td>Un type particulier</td>
+                                        <td><?php if ($i%2 == 0) { echo '<span class="label label-success">Oui</span>'; } else { echo '<span class="label label-danger">Non</span>';} ?></td>
                                         <td>
-                                            <ze-btn class="open-modalEditContract"
-                                                    id="edit_copntract"
+                                            <ze-btn class="open-modalEditTypeContract"
+                                                    id="edit_type_contract"
                                                     fa="pencil"
-                                                    href="#modalEditContract"
+                                                    href="#modalEditTypeContract"
                                                     data-toggle="modal"
-                                                    ng-click="getContract(contract)"
+                                                    ng-click="getTypeContract(typeC)"
                                                     hint="Modifier"
                                             ></ze-btn>
                                             <ze-btn class="open-modalDeleteContract"
                                                     id="delete_contract"
                                                     color="danger"
-                                                    ng-click="deleteContract(contract)"
+                                                    ng-click="deleteTypeContract(typeC)"
                                                     fa="trash"
                                                     href="#modalDeleteContract"
                                                     data-toggle="modal"
@@ -68,31 +57,29 @@
                                             ></ze-btn>
                                         </td>
                                     </tr>
-                                    <tr style="background-color: #b2dba1" >
-                                    <td>Contact</td>
-                                    <td>CT00270220</td>
-                                    <td>La meilleure personne</td>
-                                    <td>15/03/2019</td>
-                                    <td>
-                                        <ze-btn class="open-modalEditContract"
-                                                id="edit_copntract"
-                                                fa="pencil"
-                                                href="#modalEditContract"
-                                                data-toggle="modal"
-                                                ng-click="getContract(contract)"
-                                                hint="Modifier"
-                                        ></ze-btn>
-                                        <ze-btn class="open-modalDeleteContract"
-                                                id="delete_contract"
-                                                color="danger"
-                                                ng-click="deleteContract(contract)"
-                                                fa="trash"
-                                                href="#modalDeleteContract"
-                                                data-toggle="modal"
-                                                hint="Supprimer"
-                                        ></ze-btn>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td>La meilleure personne</td>
+                                        <td><span class="label label-success">Oui</span></td>
+                                        <td>
+                                            <ze-btn class="open-modalEditContract"
+                                                    id="edit_copntract"
+                                                    fa="pencil"
+                                                    href="#modalEditContract"
+                                                    data-toggle="modal"
+                                                    ng-click="getTypeContract(typeC)"
+                                                    hint="Modifier"
+                                            ></ze-btn>
+                                            <ze-btn class="open-modalDeleteContract"
+                                                    id="delete_contract"
+                                                    color="danger"
+                                                    ng-click="deleteTypeContract(typeC)"
+                                                    fa="trash"
+                                                    href="#modalDeleteContract"
+                                                    data-toggle="modal"
+                                                    hint="Supprimer"
+                                            ></ze-btn>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                             </tbody>
                         </table>
