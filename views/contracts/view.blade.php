@@ -95,7 +95,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <label>Commentaires</label>
+                    <label>Commentaire</label>
                     <textarea class="form-control" rows="5"></textarea>
                 </div>
             </div>
