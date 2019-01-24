@@ -23,11 +23,20 @@ class View extends Controller
         return view("contracts/view", $data, BASEPATH . 'App/com_zeapps_contract/views/');
     }
 
-    // Types
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////// TYPES ///////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ///
     public function contractsTypes()
     {
         $data = array();
         return view("contracts/types/liste", $data, BASEPATH . 'App/com_zeapps_contract/views/');
+    }
+
+    public function contractsTypesView()
+    {
+        $data = array();
+        return view("contracts/types/view", $data, BASEPATH . 'App/com_zeapps_contract/views/');
     }
 
     public function contractsFormModal()
@@ -36,10 +45,14 @@ class View extends Controller
         return view("contracts/types/modal_liste", $data, BASEPATH . 'App/com_zeapps_contract/views/');
     }
 
-    public function contractsConfig()
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////// CONTRACT TYPES TARIFS //////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
+    ///
+    public function contractTypeTarifEditFormModal()
     {
         $data = array();
-        return view("contracts/types/config", $data, BASEPATH . 'App/com_zeapps_contract/views/');
+        return view("contracts/types/tarifs/modal_edit", $data, BASEPATH . 'App/com_zeapps_contract/views/');
     }
 
 }

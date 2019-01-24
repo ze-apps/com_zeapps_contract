@@ -349,7 +349,6 @@ class Contracts extends Controller
         unlink($link);
     }
 
-
     public function modal(Request $request) {
         /*$limit = $request->input('limit', 15);
         $offset = $request->input('offset', 0);

@@ -1,20 +1,21 @@
 <div id="breadcrumb">
-    Configuration d'un contrat
+    @{{titreContractsTypes}}
     <div class="pull-right">
-        <ze-btn fa="arrow-left" color="info" hint="Retour" direction="left" ng-click="back()"></ze-btn>
+        <ze-btn fa="arrow-left" color="info" hint="Retour" ng-click="back()"></ze-btn>
+        <ze-btn fa="plus" color="success" hint="Nouveau" ng-click="showAddForm()"></ze-btn>
     </div>
 </div>
 
 <div id="content">
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-offset-3 col-md-6">
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Libellé</label>
-                        <input type="text" class="form-control" placeholder="Ex : La meilleure personne"/>
+                        <input type="text" ng-model="contractTypeLibelle" class="form-control" placeholder="Ex : La meilleure personne"/>
                     </div>
                 </div>
             </div>
@@ -23,7 +24,7 @@
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Actif</label>
-                        <select class="form-control">
+                        <select class="form-control" ng-model="contractTypeActif">
                             <option>Oui</option>
                             <option>Non</option>
                         </select>
@@ -32,9 +33,14 @@
             </div>
 
             <div class="row">
-                <div class="col-md-offset-6 col-md-6">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <input type="button" class="form-control btn btn-success" value="Enregistrer" >
+                        <input type="button" class="form-control btn btn-info" value="Retour" ng-click="back()">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <input type="button" class="form-control btn btn-success" value="Enregistrer" ng-click="saveContractType()">
                     </div>
                 </div>
             </div>
@@ -46,13 +52,14 @@
     <!-----------
         TARIFS
      ------------>
-    <div id="row">
+
+    <div id="row" ng-show="tarifs_contracts_types.length">
         <hr>
-            <h4>Tarifs</h4>
+            <h4 class="text-center">Tarifs</h4>
         <hr>
     </div>
 
-    <div class="row">
+    <div class="row" ng-show="tarifs_contracts_types.length">
 
         <div class="col-md-6">
             <ze-btn class="pull-left open-modalEditTarifContractType"
@@ -98,7 +105,7 @@
                                         hint="Modifier"
                                 ></ze-btn>
                                 <ze-btn class="open-modalDeleteTarifContractType"
-                                        id="delete_contract"
+                                        id="delete_tarif_type_contract"
                                         color="danger"
                                         ng-click="deleteTarif(tarif)"
                                         fa="trash"

@@ -12,13 +12,14 @@ app.config(["$provide",
                     getAll_contract : getAll_contract,
                     get_contract : get_contract,
                     save_contract : save_contract,
-                    delete_contract : delete_contract,
-                    excel : {
-                        make : makeExcel_contract
-                    }
+                    delete_contract : delete_contract
                 },
                 types_contracts : {
-                    modal : modal_contract,
+                    getAll_contract_type : getAll_contract_type,
+                    modal : modal_contract_type,
+                    get: get_contract_type,
+                    save : save_contract_type,
+                    delete : delete_contract_type,
                 }
 			};
 
@@ -30,12 +31,10 @@ app.config(["$provide",
             ///////////////////////////////////////////////////////////////////////////////////////////
             /////////////////////////////////////// CONTRACTS /////////////////////////////////////////
             ///////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-            function getAll_contract(context, id_contract)
+            //
+            function getAll_contract(limit, offset, context, filters)
             {
-                return zeHttp.post("/com_zeapps_contract/contracts/getAll/" + context + "/" + id_contract);
+                return zeHttp.post("/com_zeapps_contract/contracts/getAll/" + limit + "/" + offset + "/" + context, filters);
             }
 
             function get_contract(id)
@@ -53,18 +52,38 @@ app.config(["$provide",
                 return zeHttp.delete("/com_zeapps_contract/contracts/delete/" + id);
             }
 
-            function modal_contract(limit, offset, filters){
-                return zeHttp.post("/com_zeapps_contract/contracts/modal/" + limit + "/" + offset, filters);
-            }
-
             function context_contract()
             {
                 return zeHttp.post("/com_zeapps_contract/contracts/context/");
             }
 
-            function makeExcel_contract(filters)
+            ///////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////// CONTRACTS TYPES /////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////
+            //
+            function getAll_contract_type(limit, offset, context, filters)
             {
-                return zeHttp.post("/com_zeapps_contract/contracts/make_export/", filters);
+                return zeHttp.post("/com_zeapps_contract/contracts/types/getAll/" + limit + "/" + offset + "/" + context, filters);
+            }
+
+            function get_contract_type(id_contract_type)
+            {
+                return zeHttp.post("/com_zeapps_contract/contracts/types/get/" + id_contract_type);
+            }
+
+            function modal_contract_type(limit, offset, filters)
+            {
+                return zeHttp.post("/com_zeapps_contract/contracts/types/modal/" + limit + "/" + offset, filters);
+            }
+
+            function save_contract_type(data)
+            {
+                return zeHttp.post("/com_zeapps_contract/contracts/type/save", data);
+            }
+
+            function delete_contract_type(id)
+            {
+                return zeHttp.delete("/com_zeapps_contract/contracts/types/delete/" + id);
             }
 
 		}]);

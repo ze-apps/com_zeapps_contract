@@ -44,24 +44,17 @@ class ComZeappsContract
             $table->double('frais_installation');
 
             // Compta - TVA
-            // TODO : 3 champs à correspondre avec les bonnes tables
-            // TODO : 3 champs à correspondre avec les bonnes tables
-            // TODO : 3 champs à correspondre avec les bonnes tables
-            // TODO : 3 champs à correspondre avec les bonnes tables
-            // TODO : 3 champs à correspondre avec les bonnes tables
-            // TODO : 3 champs à correspondre avec les bonnes tables
-            // TODO : 3 champs à correspondre avec les bonnes tables
             $table->integer('id_taux_tva', false, true)->default(0);
-            $table->string('id_taux_tva_value', false, true)->default(0);
-            $table->integer('compte_compta', false, true)->default(0);
+            $table->string('id_taux_tva_value', false, true)->default('');
+            $table->string('compte_compta', false, true)->default('');
 
             $table->timestamps();
             $table->softDeletes();
         });
 
-        ////////////////////////////////////////////////////////////////////////////////////
-        //////////////////////////////// CONTRATS_SOUSCRITS ////////////////////////////////
-        ////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////// CONTRATS_SOUSCRITS //////////////////////////////////
+        /////////////////////////////////////////////////////////////////////////////////////////
         ///
         Capsule::schema()->create('com_zeapps_contract_contracts_souscrits', function (Blueprint $table) {
 

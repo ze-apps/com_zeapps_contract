@@ -1,6 +1,6 @@
 <?php
 
-namespace App\fr_soca_production\Models;
+namespace App\com_zeapps_contract\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,31 +11,39 @@ use Zeapps\Core\ModelExportType;
 use Zeapps\Core\ModelHelper;
 use Zeapps\Core\ObjectHistory;
 
-class Absence extends Model {
+class ContractTypeTarif extends Model {
 
     use SoftDeletes;
 
     protected $fieldModelInfo ;
 
-    static protected $_table = 'fr_soca_production_absences_salaries';
+    static protected $_table = 'com_zeapps_contract_contracts_types_tarifs';
     protected $table ;
 
     public function __construct(array $attributes = [])
     {
         $this->table = self::$_table;
 
-        // Civilite
         $this->fieldModelInfo = new ModelHelper();
         $this->fieldModelInfo->increments('id');
 
-        $this->fieldModelInfo->string('libelle', 255);
+        // Contrat types
+        $this->fieldModelInfo->integer('id_contract_type', false, true)->default(0);
 
-        $this->fieldModelInfo->date('date_debut');
-        $this->fieldModelInfo->date('date_fin')->nullable();
+        // Periode
+        $this->fieldModelInfo->integer('duree_periode')->default(0);
+        $this->fieldModelInfo->double('tarif_periode');
+        $this->fieldModelInfo->integer('duree_miniumale_contract')->default(0);
 
-        // Salarié
-        $this->fieldModelInfo->integer('id_salarie', false, true)->default(0);
-        $this->fieldModelInfo->string('nom_prenom_salarie', 255)->default("");
+        // Frais
+        $this->fieldModelInfo->double('frais_resiliation');
+        $this->fieldModelInfo->double('frais_modification');
+        $this->fieldModelInfo->double('frais_installation');
+
+        // Compta - TVA
+        $this->fieldModelInfo->integer('id_taux_tva', false, true)->default(0);
+        $this->fieldModelInfo->string('id_taux_tva_value', false, true)->default('');
+        $this->fieldModelInfo->string('compte_compta', false, true)->default('');
 
         $this->fieldModelInfo->timestamps();
         $this->fieldModelInfo->softDeletes();
@@ -93,19 +101,9 @@ class Absence extends Model {
     public function getModelExport() : ModelExportType {
         $objModelExport = new ModelExportType() ;
         $objModelExport->table = $this->table ;
-        $objModelExport->tableLabel = "Absences" ;
+        $objModelExport->tableLabel = "Type de contrats" ;
         $objModelExport->fields = $this->getFields() ;
         return $objModelExport;
-    }
-
-
-
-    public static function getAbsencesDuneAnnee($annee)
-    {
-        $absences = Absence::whereRaw("date_debut >= '$annee-01-01' and date_fin <= '$annee-12-31'")
-            ->orWhereRaw("date_debut >= '$annee-01-01' and date_debut <= '$annee-12-31' and date_fin is null")
-            ->get();
-        return $absences;
     }
 
 }
