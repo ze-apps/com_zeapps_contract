@@ -28,7 +28,7 @@
 
                             <thead>
                                 <tr>
-                                    <th class="col-md-5">Libellé</th>
+                                    <th class="col-md-5">Libellé </th>
                                     <th class="col-md-5">Actif</th>
                                     <th class="col-md-2">Action</th>
                                 </tr>
@@ -36,7 +36,7 @@
 
                             <tbody>
                                     <tr ng-repeat="contract_type in contracts_types">
-                                        <td>@{{contract_type.libelle}}</td>
+                                        <td>@{{contract_type.libelle}} <i class="badge" style="color: white">@{{contract_type.nb_tarifs}}</i></td>
                                         <td>
                                             <span ng-if="contract_type.actif == 'Oui'" class="label label-success">Oui</span>
                                             <span ng-if="contract_type.actif == 'Non'" class="label label-danger">Non</span>

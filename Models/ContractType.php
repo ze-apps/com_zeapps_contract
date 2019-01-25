@@ -107,7 +107,7 @@ class ContractType extends Model {
                 $retour = ContractTypeTarif::where('id_contract_type', $contract_type->id)->get();
             }
         } else {
-            $retour = ContractTypeTarif::all();
+            $retour = ContractTypeTarif::groupBy('id_contract_type')->selectRaw('count(*) as nb_tarifs, id_contract_type')->pluck('nb_tarifs', 'id_contract_type')->toArray();
         }
 
         return $retour;

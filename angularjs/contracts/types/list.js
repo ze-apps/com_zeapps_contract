@@ -37,7 +37,7 @@ app.controller("ComZeappsContractsTypesListeCtrl", ["$scope", "$routeParams", "$
             var offset = ($scope.page - 1) * $scope.pageSize;
             var formatted_filters = angular.toJson($scope.filter_model);
 
-            zhttp.contract.types_contracts.getAll_contract_type($scope.pageSize, offset, context, formatted_filters).then(function (response) {
+            zhttp.contract.types_contracts.getAll($scope.pageSize, offset, context, formatted_filters).then(function (response) {
 
                 if (response.status == 200) {
 

@@ -33,7 +33,7 @@ class ContractTypeTarif extends Model {
         // Periode
         $this->fieldModelInfo->integer('duree_periode')->default(0);
         $this->fieldModelInfo->double('tarif_periode');
-        $this->fieldModelInfo->integer('duree_miniumale_contract')->default(0);
+        $this->fieldModelInfo->integer('duree_minimale_contract')->default(0);
 
         // Frais
         $this->fieldModelInfo->double('frais_resiliation');

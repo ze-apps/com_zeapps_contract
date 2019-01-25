@@ -43,5 +43,52 @@ class ComZeappsContractSeeds
             'updated_at'=>'2019-01-24',
         ]);
 
+        ///////////////////////////////////////////////////////////////////////////////////////
+        ///////////////////////////////// CONTRATS_TYPES TARIFS ///////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////
+        ///
+        Capsule::table('com_zeapps_contract_contracts_types_tarifs')->insert([
+            'id_contract_type' => 1,
+            'duree_periode' => 67,
+            'tarif_periode' => 112.00,
+            'duree_minimale_contract' => 24,
+            'frais_resiliation' => 15.5,
+            'frais_modification' => 17.9,
+            'frais_installation' => 18.9,
+            'id_taux_tva' => 1,
+            'id_taux_tva_value' => 20.15,
+            'compte_compta' => "compte_compta_1",
+            'created_at'=>'2019-01-24',
+            'updated_at'=>'2019-01-24',
+        ]);
+        Capsule::table('com_zeapps_contract_contracts_types_tarifs')->insert([
+            'id_contract_type' => 2,
+            'duree_periode' => 50,
+            'tarif_periode' => 125.45,
+            'duree_minimale_contract' => 30,
+            'frais_resiliation' => 36.5,
+            'frais_modification' => 20.5,
+            'frais_installation' => 19.9,
+            'id_taux_tva' => 2,
+            'id_taux_tva_value' => 10.99,
+            'compte_compta' => "compte_compta_1",
+            'created_at'=>'2019-01-24',
+            'updated_at'=>'2019-01-24',
+        ]);
+        Capsule::table('com_zeapps_contract_contracts_types_tarifs')->insert([
+            'id_contract_type' => 2,
+            'duree_periode' => 47,
+            'tarif_periode' => 88.60,
+            'duree_minimale_contract' => 24,
+            'frais_resiliation' => 33.25,
+            'frais_modification' => 11.9,
+            'frais_installation' => 18.5,
+            'id_taux_tva' => 1,
+            'id_taux_tva_value' => 20.15,
+            'compte_compta' => "compte_compta_2",
+            'created_at'=>'2019-01-24',
+            'updated_at'=>'2019-01-24',
+        ]);
+
     }
 }

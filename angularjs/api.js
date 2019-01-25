@@ -15,11 +15,16 @@ app.config(["$provide",
                     delete_contract : delete_contract
                 },
                 types_contracts : {
-                    getAll_contract_type : getAll_contract_type,
+                    getAll : getAll_contract_type,
                     modal : modal_contract_type,
                     get: get_contract_type,
                     save : save_contract_type,
                     delete : delete_contract_type,
+                },
+                types_contracts_tarifs : {
+                    get: get_contract_type_tarif,
+                    save : save_contract_type_tarif,
+                    delete : delete_contract_type_tarif,
                 }
 			};
 
@@ -78,13 +83,33 @@ app.config(["$provide",
 
             function save_contract_type(data)
             {
-                return zeHttp.post("/com_zeapps_contract/contracts/type/save", data);
+                return zeHttp.post("/com_zeapps_contract/contracts/types/save", data);
             }
 
             function delete_contract_type(id)
             {
                 return zeHttp.delete("/com_zeapps_contract/contracts/types/delete/" + id);
             }
+
+            ///////////////////////////////////////////////////////////////////////////////////////////
+            ///////////////////////////////////////// TARIFS //////////////////////////////////////////
+            ///////////////////////////////////////////////////////////////////////////////////////////
+            //
+            function get_contract_type_tarif(id_contract_type_tarif)
+            {
+                return zeHttp.post("/com_zeapps_contract/contracts/types/tarifs/get/" + id_contract_type_tarif);
+            }
+
+            function save_contract_type_tarif(data)
+            {
+                return zeHttp.post("/com_zeapps_contract/contracts/types/tarifs/save", data);
+            }
+
+            function delete_contract_type_tarif(id)
+            {
+                return zeHttp.delete("/com_zeapps_contract/contracts/types/tarifs/delete/" + id);
+            }
+
 
 		}]);
 	}]);

@@ -45,14 +45,4 @@ class View extends Controller
         return view("contracts/types/modal_liste", $data, BASEPATH . 'App/com_zeapps_contract/views/');
     }
 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    ////////////////////////////////// CONTRACT TYPES TARIFS //////////////////////////////
-    ///////////////////////////////////////////////////////////////////////////////////////
-    ///
-    public function contractTypeTarifEditFormModal()
-    {
-        $data = array();
-        return view("contracts/types/tarifs/modal_edit", $data, BASEPATH . 'App/com_zeapps_contract/views/');
-    }
-
 }

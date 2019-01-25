@@ -36,7 +36,7 @@ class ComZeappsContract
             // Periode
             $table->integer('duree_periode')->default(0);
             $table->double('tarif_periode');
-            $table->integer('duree_miniumale_contract')->default(0);
+            $table->integer('duree_minimale_contract')->default(0);
 
             // Frais
             $table->double('frais_resiliation');

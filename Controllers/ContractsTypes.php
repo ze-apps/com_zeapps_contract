@@ -4,12 +4,12 @@ namespace App\com_zeapps_contract\Controllers;
 
 use App\com_zeapps_contract\Models\ContractType;
 
+use App\com_zeapps_crm\Models\Taxes;
 use Zeapps\Core\Controller;
 use Zeapps\Core\Request;
 
 class ContractsTypes extends Controller
 {
-    private $sheet_name;
 
     public function getAll(Request $request)
     {
@@ -25,8 +25,6 @@ class ContractsTypes extends Controller
         }
 
         $contracts_types_rs = ContractType::orderBy('libelle') ;
-
-        $actifs_options = ['oui', 'non'];
 
         foreach ($filters as $key => $value) {
             if (strpos($key, " LIKE")) {
@@ -46,6 +44,20 @@ class ContractsTypes extends Controller
             $contracts_types = array();
         }
 
+        // Get array('id_contract_type' => 'nb_tarifs')
+        $model = new ContractType();
+        $contracts_types_with_tarifs = $model->getAllWithTarifs();
+
+        // Set attribute to object for vue
+        foreach ($contracts_types as $contract_typ) {
+            foreach ($contracts_types_with_tarifs as $key => $value) {
+                if ($contract_typ->id == $key) {
+                    $contract_typ->nb_tarifs = $value > 1 ? $value . ' tarifs' : $value . ' tarif';
+                    break;
+                }
+            }
+        }
+
         $ids = [];
         if($total < 500) {
             $rows = $contracts_types_rs_id->select(array("id"))->get();
@@ -56,7 +68,6 @@ class ContractsTypes extends Controller
 
         echo json_encode(array(
             'contracts_types' => $contracts_types,
-            'actifs_options' => $actifs_options,
             'total' => $total,
             'ids' => $ids
         ));
@@ -79,9 +90,13 @@ class ContractsTypes extends Controller
             $tarifs_contracts_types = $contract_type->getAllWithTarifs($id);
         }
 
+        // Taux TVA
+        $all_taux_tva = Taxes::all();
+
         echo json_encode(array(
             'tarifs_contracts_types' => $tarifs_contracts_types,
-            'contract_type' => $contract_type
+            'contract_type' => $contract_type,
+            'all_taux_tva'  => $all_taux_tva
         ));
     }
 
@@ -122,12 +137,6 @@ class ContractsTypes extends Controller
         echo $deleted ? $id : 0;
     }
 
-    // TODO : A FAIRE
-    // TODO : A FAIRE
-    // TODO : A FAIRE
-    // TODO : A FAIRE
-    // TODO : A FAIRE
-    // TODO : A FAIRE
     public function modal(Request $request)
     {
         /*$limit = $request->input('limit', 15);
