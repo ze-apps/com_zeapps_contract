@@ -7,12 +7,12 @@ app.config(["$provide",
 			var zeHttp = $delegate;
 
             zeHttp.contract = {
-                contract : {
+                contracts : {
                     context : context_contract,
-                    getAll_contract : getAll_contract,
-                    get_contract : get_contract,
-                    save_contract : save_contract,
-                    delete_contract : delete_contract
+                    getAll : getAll_contract,
+                    get : get_contract,
+                    save : save_contract,
+                    delete : delete_contract
                 },
                 types_contracts : {
                     getAll : getAll_contract_type,
@@ -34,7 +34,7 @@ app.config(["$provide",
 			return zeHttp;
 
             ///////////////////////////////////////////////////////////////////////////////////////////
-            /////////////////////////////////////// CONTRACTS /////////////////////////////////////////
+            //////////////////////////////////// CONTRACTS SOUSCRITS //////////////////////////////////
             ///////////////////////////////////////////////////////////////////////////////////////////
             //
             function getAll_contract(limit, offset, context, filters)
@@ -42,9 +42,9 @@ app.config(["$provide",
                 return zeHttp.post("/com_zeapps_contract/contracts/getAll/" + limit + "/" + offset + "/" + context, filters);
             }
 
-            function get_contract(id)
+            function get_contract(id_contract)
             {
-                return zeHttp.get("/com_zeapps_contract/contracts/" + id);
+                return zeHttp.get("/com_zeapps_contract/contracts/get/" + id_contract);
             }
 
             function save_contract(data)

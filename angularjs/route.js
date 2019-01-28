@@ -12,7 +12,7 @@ app.config(["$routeProvider",
 			templateUrl: "/com_zeapps_contract/contracts/liste",
 			controller: "ComZeappsContractsListCtrl"
 		})
-		.when("/ng/com_zeapps_contract/contracts/view", {
+		.when("/ng/com_zeapps_contract/contracts/get/:id", {
 			templateUrl: "/com_zeapps_contract/contracts/view",
 			controller: "ComZeappsContractsViewCtrl"
 		})

@@ -10,5 +10,5 @@ Routeur::get('/com_zeapps_contract/contracts/types/view', 'App\\com_zeapps_contr
 Routeur::post("/com_zeapps_contract/contracts/types/delete/{id}", 'App\\com_zeapps_contract\\Controllers\\ContractsTypes@delete');
 
 // Modal
-Routeur::get('/com_zeapps_contract/contracts/types/modal_liste/', 'App\\com_zeapps_contract\\Controllers\\View@contractsFormModal');
-Routeur::post("/com_zeapps_contract/contracts/types/modal/{limit}/{offset}", 'App\\com_zeapps_contact\\Controllers\\ContractsTypes@modal');
+Routeur::get('/com_zeapps_contract/contracts/types/modal_liste/', 'App\\com_zeapps_contract\\Controllers\\View@contractsTypesFormModal');
+Routeur::post("/com_zeapps_contract/contracts/types/modal/{limit}/{offset}", 'App\\com_zeapps_contract\\Controllers\\ContractsTypes@modal');

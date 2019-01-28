@@ -34,6 +34,8 @@ app.controller("ComZeappsContractsViewCtrl", ["$scope", "$routeParams", "$locati
             ]
         };
 
+        $scope.titre_contract_form = 'Nouveau contrat';
+
         $scope.filter_model = {};
         $scope.contracts = [];
         $scope.currentContract = null;
@@ -42,7 +44,61 @@ app.controller("ComZeappsContractsViewCtrl", ["$scope", "$routeParams", "$locati
         $scope.total = 0;
 
 
+        /*****************************
+         *** GET CONTRACT SOUSCRIT ***
+         *****************************/
+        if ($routeParams.id > 0) {
 
+            $scope.titre_contract_form = 'Modifier contrat';
+
+            zhttp.contract.contracts.get($routeParams.id).then(function (response) {
+
+                if (response.status == 200) {
+
+                    $scope.tarifs_contracts_types = response.data.tarifs_contracts_types;
+
+                    // Types de contact
+                    $scope.form.id_contrat_type = response.data.contract_souscrit.id_contrat_type;
+                    $scope.form.libelle_type_contract = response.data.contract_souscrit.libelle_type_contract;
+console.log(response.data.contract_souscrit.contract_souscrit_tarifs_formates);
+                    // Tarifs
+                    $scope.form.contractSouscritsTarifs = response.data.contract_souscrit.contract_souscrit_tarifs_formates;
+
+                    // Entreprise et contact
+                    $scope.form.name_company = response.data.contract_souscrit.id_entreprise_label;
+                    $scope.form.name_contact = response.data.contract_souscrit.id_contact_label;
+
+                    $scope.contractSouscritLibelle = response.data.contract_souscrit.libelle;
+                    $scope.contractSouscritCommentaire = response.data.contract_souscrit.commentaire;
+
+                    // Statuts
+                    $scope.contractSouscritStatut = response.data.contract_souscrit.statut;
+
+                    // Délai de renouvellement
+                    switch (response.data.contract_souscrit.delai_renouvellement) {
+                        case 0 :
+                            $scope.contractSouscritsDelaiRenouvellement = 'Le jour de la date d\'échéance';
+                            break;
+                        case 30 :
+                            $scope.contractSouscritsDelaiRenouvellement = '30 jours avant date d\'échéance';
+                            break;
+                        case 60 :
+                            $scope.contractSouscritsDelaiRenouvellement = '60 jours avant date d\'échéance';
+                            break;
+                        default :
+                            break;
+                    }
+
+                    // Dates
+                    $scope.dateOuverture = response.data.contract_souscrit.date_ouverture;
+                    $scope.firstFacturation = response.data.contract_souscrit.date_premiere_facturation;
+                    $scope.nextFacturation = response.data.contract_souscrit.date_facturation_suivante;
+                }
+            });
+
+        } else if ($routeParams.id == 0) {
+            $scope.contractSouscritsDelaiRenouvellement = 'Le jour de la date d\'échéance';
+        }
 
 
 
@@ -85,18 +141,13 @@ app.controller("ComZeappsContractsViewCtrl", ["$scope", "$routeParams", "$locati
 
         function cancel() {
             $location.path("/ng/com_zeapps_contract/contracts/liste");
-            /*if ($routeParams.url_retour) {
-                $location.path($routeParams.url_retour.replace(charSepUrlSlashRegExp, "/"));
-            } else {
-                $location.path("/ng/com_zeapps_crm/product/category/" + $scope.form.id_cat);
-            }*/
         }
 
 
 
-        /******************************
-         * LOAD CONTACTS & COMPANIES
-         */
+        /**********************
+         *** LOAD COMPANIES ***
+         **********************/
 
         $scope.companyHttp = zhttp.contact.company;
         $scope.companyTplNew = '/com_zeapps_contact/companies/form_modal/';
@@ -117,6 +168,10 @@ app.controller("ComZeappsContractsViewCtrl", ["$scope", "$routeParams", "$locati
                 $scope.form.name_company = "";
             }
         }
+
+        /*********************
+         *** LOAD CONTACTS ***
+         *********************/
 
         $scope.contactHttp = zhttp.contact.contact;
         $scope.contactTplNew = '/com_zeapps_contact/contacts/form_modal/';
@@ -149,9 +204,9 @@ app.controller("ComZeappsContractsViewCtrl", ["$scope", "$routeParams", "$locati
             }
         }
 
-        /**************************
-         * LOAD TYPES OF CONTRACTS
-         */
+        /*******************************
+         *** LOAD TYPES OF CONTRACTS ***
+         *******************************/
 
         $scope.typesContractsHttp = zhttp.contract.types_contracts;
         $scope.typesContractsTplNew = '/com_zeapps_contract/contracts/types/modal_liste/';
@@ -163,20 +218,18 @@ app.controller("ComZeappsContractsViewCtrl", ["$scope", "$routeParams", "$locati
         $scope.loadTypesContracts = loadTypesContracts;
         function loadTypesContracts(typeContract) {
             if (typeContract) {
-                $scope.form.id_copntrat_type = typeContract.id;
-                $scope.form.libelle_type_contract = typeContract.libelle_type_contract;
+                $scope.form.id_contrat_type = typeContract.id;
+                $scope.form.libelle_type_contract = typeContract.libelle;
             } else {
-                $scope.form.id_copntrat_type = 0;
+                $scope.form.id_contrat_type = 0;
                 $scope.form.libelle_type_contract = "";
             }
         }
 
 
-
-
-        /***************
-         * BACK TO LIST
-         */
+        /********************
+         *** BACK TO LIST ***
+         ********************/
         $scope.back = back;
         function back()
         {

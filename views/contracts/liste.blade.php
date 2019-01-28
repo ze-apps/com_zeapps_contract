@@ -15,7 +15,7 @@
                         <ze-btn class="pull-left"
                                 id="ajout"
                                 fa="plus"
-                                color="success open-modalEditContract"
+                                color="success"
                                 hint="Nouveau"
                                 always-on="true"
                                 data-toggle="modal"
@@ -28,7 +28,7 @@
 
                     <div class="col-md-12" style="padding-top: 42px">
 
-                        <table id="tableListeContracts" class="table table-hover table-responsive">
+                        <table id="tableListeContracts" class="table table-hover table-responsive" ng-show="contracts_souscrits.length">
                             <thead>
                                 <tr>
                                     <th class="col-md-2">Contractant</th>
@@ -40,184 +40,31 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php for($i=0; $i<12; $i++) { ?>
-                                    <tr>
-                                        <td>Entreprise</td>
-                                        <td>FR85242565</td>
-                                        <td>La meilleure entreprise</td>
-                                        <td><?php if ($i%2 == 0) { echo '<span class="label label-success">Ouvert</span>'; } else { echo '<span class="label label-danger">Clôturé</span>';} ?></td>
-                                        <td>15/03/2019</td>
-                                        <td>
-                                            <ze-btn class="open-modalEditContract"
-                                                    id="edit_copntract"
-                                                    fa="pencil"
-                                                    href="#modalEditContract"
-                                                    data-toggle="modal"
-                                                    ng-click="getContract(contract)"
-                                                    hint="Modifier"
-                                            ></ze-btn>
-                                            <ze-btn class="open-modalDeleteContract"
-                                                    id="delete_contract"
-                                                    color="danger"
-                                                    ng-click="deleteContract(contract)"
-                                                    fa="trash"
-                                                    href="#modalDeleteContract"
-                                                    data-toggle="modal"
-                                                    hint="Supprimer"
-                                            ></ze-btn>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Contact</td>
-                                        <td>CT00270220</td>
-                                        <td>La meilleure personne</td>
-                                        <td><?php if ($i%2 == 0) { echo '<span class="label label-success">Ouvert</span>'; } else { echo '<span class="label label-danger">Clôturé</span>';} ?></td>
-                                        <td>15/03/2019</td>
-                                        <td>
-                                            <ze-btn class="open-modalEditContract"
-                                                    id="edit_copntract"
-                                                    fa="pencil"
-                                                    href="#modalEditContract"
-                                                    data-toggle="modal"
-                                                    ng-click="getContract(contract)"
-                                                    hint="Modifier"
-                                            ></ze-btn>
-                                            <ze-btn class="open-modalDeleteContract"
-                                                    id="delete_contract"
-                                                    color="danger"
-                                                    ng-click="deleteContract(contract)"
-                                                    fa="trash"
-                                                    href="#modalDeleteContract"
-                                                    data-toggle="modal"
-                                                    hint="Supprimer"
-                                            ></ze-btn>
-                                        </td>
-                                    </tr>
-                                <?php } ?>
+                                <tr ng-repeat="contract in contracts_souscrits">
+                                    <td>@{{contract.contractant}}</td>
+                                    <td>@{{contract.numero_piece}}</td>
+                                    <td>@{{contract.libelle}}</td>
+                                    <td><span class="@{{contract.label_color}}">@{{contract.statut}}</span></td>
+                                    <td>@{{contract.prochaine_echeance}}</td>
+                                    <td>
+                                        <ze-btn id="edit_contract"
+                                                fa="pencil"
+                                                ng-click="getContract(contract.id)"
+                                                hint="Modifier"
+                                                direction="left"></ze-btn>
+
+                                        <ze-btn id="delete_contract"
+                                                color="danger"
+                                                ng-click="delete(contract)"
+                                                fa="trash"
+                                                hint="Supprimer"
+                                                direction="left"
+                                                ze-confirmation
+                                        ></ze-btn>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
-
-                        <!---------------------------------------------------
-                                              MODALS
-                        ----------------------------------------------------->
-
-                        <div class="modal" id="modalEditContract" tabindex="-1" role="dialog">
-                            <div class="modal-dialog" role="document" >
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <h4>
-                                            <span id="titreModalAbsenceSalarie">Nouvelle absence</span>
-                                        </h4>
-                                    </div>
-
-                                    <div class="modal-body">
-
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="row">
-
-                                                    <div class="col-md-12" style="margin-top: 5px; margin-bottom: 5px; padding: 5px">
-                                                        <div class="col-md-4 " style="margin-top: 5px;">
-                                                            <strong>Libellé <span style="color: red;">*</span></strong> <span class="pull-right hidden-xs">:</span>
-                                                        </div>
-                                                        <div class="col-md-8 ">
-                                                            <input type="text"
-                                                                   class="form-control errorSelect"
-                                                                   id="labelAbsenceSalarie"
-                                                                   ng-model="valueLibelleAbsenceSalarie"
-                                                                   ng-class="valueLibelleAbsenceSalarie==null||valueLibelleAbsenceSalarie==''?'errorSelect form-control':'form-control'"
-                                                                   placeholder="Libellé" />
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-12" style="margin-top: 5px; margin-bottom: 5px; padding: 5px">
-                                                        <div class="col-md-4 " style="margin-top: 5px;">
-                                                            <strong>Date de début <span style="color: red;">*</span></strong> <span class="pull-right hidden-xs">:</span>
-                                                        </div>
-                                                        <div class="col-md-8 ">
-                                                            <input type="text"
-                                                                   class="form-control"
-                                                                   id="dateDebut"
-                                                                   value=""
-                                                                   placeholder="Date de début"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-12" style="margin-top: 5px; margin-bottom: 5px; padding: 5px" >
-                                                        <div class="col-md-4 " style="margin-top: 5px;">
-                                                            <strong>Date de fin</strong> <span class="pull-right hidden-xs">:</span>
-                                                        </div>
-                                                        <div class="col-md-8 ">
-                                                            <input type="text"
-                                                                   id="dateFin"
-                                                                   class="form-control"
-                                                                   value=""
-                                                                   placeholder="Date de fin"/>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-md-12" style="margin-top: 5px; margin-bottom: 5px; padding: 5px">
-                                                        <div class="col-md-4 " style="margin-top: 5px;">
-                                                            <span style="color: red;">*</span> : Champs obligatoires
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="row">
-
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-                                        <button type="button" class="btn btn-success" ng-click="saveAbsenceSalarie()">Valider</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <script type="text/javascript">
-                                $(document).ready(function() {
-                                    $( "#dateDebut" ).datepicker( $.datepicker.regional[ "fr" ] );
-                                    $( "#dateFin" ).datepicker( $.datepicker.regional[ "fr" ] );
-                                });
-                            </script>
-
-                        </div>
-
-                        <div class="modal" id="modalDeleteContract" tabindex="-1" role="dialog">
-
-                            <div class="modal-dialog" role="document" >
-
-                                <div class="modal-content">
-
-                                    <div class="modal-header">
-                                        <h4>
-                                            Suppression
-                                        </h4>
-                                    </div>
-
-                                    <div class="modal-body">
-
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                Voulez-vous vraiment supprimer cette absence pour ce salarié ?
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuler</button>
-                                        <button type="button" class="btn btn-success" ng-click="validateDelete()">Valider</button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
 
                     </div>
 

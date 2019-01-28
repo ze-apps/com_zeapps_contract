@@ -1,7 +1,7 @@
 <div id="breadcrumb">
-    Nouveau contrat
+    @{{titre_contract_form}}
     <div class="pull-right">
-        <ze-btn fa="arrow-left" color="info" hint="Retour" direction="left" ng-click="back()"></ze-btn>
+        <ze-btn fa="arrow-left" color="info" hint="Retour" direction="right" always-on="true" ng-click="back()"></ze-btn>
     </div>
 </div>
 
@@ -30,7 +30,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Type de contrat</label>
-                            <span   ze-modalsearch="loadTypesContracts"
+                            <span ze-modalsearch="loadTypesContracts"
                                 data-http="typesContractsHttp"
                                 data-model="form.libelle_type_contract"
                                 data-fields="typesContractsFields"
@@ -64,13 +64,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label>Tarif (Selon période)</label>
-                            <select class="form-control">
-                                <option>36,90 €</option>
-                                <option>54,24 €</option>
-                                <option>87,70 €</option>
-                                <option>112,08 €</option>
-                                <option>141,25 €</option>
+                            <label>Tarif</label>
+                            <select class="form-control" ng-model="contractSouscritsTarifs">
                             </select>
                         </div>
                     </div>
@@ -86,7 +81,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Libellé</label>
-                    <input type="text" placeholder="Ex : La meilleure personne" value="" class="form-control"/>
+                    <input type="text" placeholder="Ex : La meilleure personne" value="" ng-model="contractSouscritLibelle" class="form-control"/>
                 </div>
             </div>
         </div>
@@ -96,7 +91,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Commentaire</label>
-                    <textarea class="form-control" rows="5"></textarea>
+                    <textarea class="form-control" ng-model="contractSouscritCommentaire" rows="5"></textarea>
                 </div>
             </div>
         </div>
@@ -107,7 +102,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label>Statut</label>
-                    <select class="form-control">
+                    <select class="form-control" ng-model="contractSouscritStatut">
                         <option>Ouvert</option>
                         <option>Clôturé</option>
                     </select>
@@ -117,15 +112,16 @@
 
 
         <div class="row">
+
             <div class="col-md-6">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Délai renouvellement</label>
-                            <select class="form-control">
-                                <option>Le jour de la date échéance</option>
-                                <option>30 jours avant date échéance</option>
-                                <option>60 jours avant date échéance</option>
+                            <select class="form-control" ng-model="contractSouscritsDelaiRenouvellement">
+                                <option>Le jour de la date d'échéance</option>
+                                <option>30 jours avant date d'échéance</option>
+                                <option>60 jours avant date d'échéance</option>
                             </select>
                         </div>
                     </div>
@@ -136,12 +132,39 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label>Date 1ère facturation</label>
-                            <input id="firstFacturation" class="form-control" type="text" value="" placeholder=""/>
+                            <label>Date d'ouverture</label>
+                            <input id="dateOuverture" ng-model="dateOuverture" class="form-control" type="text" value="" placeholder="Format : JJ/MM/AAAA"/>
                         </div>
                     </div>
                 </div>
             </div>
+
+        </div>
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Date 1ère facturation</label>
+                            <input id="firstFacturation" ng-model="firstFacturation" class="form-control" type="text" value="" placeholder="Format : JJ/MM/AAAA"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Date de la facturation suivante</label>
+                            <input id="nextFacturation" ng-model="nextFacturation" class="form-control" type="text" value="" placeholder="Format : JJ/MM/AAAA"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 
@@ -159,7 +182,9 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
+            $("#dateOuverture").datepicker($.datepicker.regional["fr"]);
             $("#firstFacturation").datepicker($.datepicker.regional["fr"]);
+            $("#nextFacturation").datepicker($.datepicker.regional["fr"]);
         });
     </script>
 

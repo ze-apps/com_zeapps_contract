@@ -23,6 +23,12 @@ class View extends Controller
         return view("contracts/view", $data, BASEPATH . 'App/com_zeapps_contract/views/');
     }
 
+    public function contractsSouscritsFormModal()
+    {
+        $data = array();
+        return view("contracts/form_modal", $data, BASEPATH . 'App/com_zeapps_contract/views/');
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////////
     ///////////////////////////////////////// TYPES ///////////////////////////////////////
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -39,7 +45,7 @@ class View extends Controller
         return view("contracts/types/view", $data, BASEPATH . 'App/com_zeapps_contract/views/');
     }
 
-    public function contractsFormModal()
+    public function contractsTypesFormModal()
     {
         $data = array();
         return view("contracts/types/modal_liste", $data, BASEPATH . 'App/com_zeapps_contract/views/');

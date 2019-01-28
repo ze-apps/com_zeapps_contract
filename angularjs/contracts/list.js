@@ -41,16 +41,54 @@ app.controller("ComZeappsContractsListCtrl", ["$scope", "$routeParams", "$locati
         $scope.pageSize = 15;
         $scope.total = 0;
 
+        /*****************
+         *** LOAD LIST ***
+         *****************/
+        $scope.loadList = loadList;
+        loadList(true) ;
 
-        /***************
-         * NEW CONTRACT
-         ***************/
+        function loadList(context) {
+
+            context = context || "";
+            var offset = ($scope.page - 1) * $scope.pageSize;
+            var formatted_filters = angular.toJson($scope.filter_model);
+
+            zhttp.contract.contracts.getAll($scope.pageSize, offset, context, formatted_filters).then(function (response) {
+
+                if (response.status == 200) {
+
+                    if(context) {
+                        $scope.filters.main[0].options = [];
+                    }
+
+                    $scope.contracts_souscrits = response.data.contracts_souscrits ;
+
+                    // stock la liste des compagnies pour la navigation par fleche
+                    $rootScope.contracts_souscrits_ids = response.data.ids ;
+                    $scope.total = response.data.total;
+                }
+            });
+        }
+
+        /********************
+         *** NEW CONTRACT ***
+         ********************/
         $scope.getContract = getContract;
         function getContract(id)
         {
-            if (id == 0) {
-                $location.url('/ng/com_zeapps_contract/contracts/view');
-            }
+            $location.url('/ng/com_zeapps_contract/contracts/get/'+id);
+        }
+
+        /**************
+         *** DELETE ***
+         **************/
+        $scope.delete = del;
+        function del(contract) {
+            zhttp.contract.contracts.delete(contract.id).then(function (response) {
+                if (response.status == 200) {
+                    loadList();
+                }
+            });
         }
 
     }]

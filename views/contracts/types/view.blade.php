@@ -1,8 +1,7 @@
 <div id="breadcrumb">
     @{{titreContractsTypes}}
-    <div class="pull-right">
-        <ze-btn fa="arrow-left" color="info" hint="Retour" ng-click="back()"></ze-btn>
-        <ze-btn fa="plus" color="success" hint="Nouveau" ng-click="showAddForm()"></ze-btn>
+    <div class="pull-right" ng-if="titreContractsTypes == 'Configuration d\'un contrat'" >
+        <ze-btn fa="plus" color="success" hint="Nouveau" direction="right" always-on="true" ng-click="showAddForm()"></ze-btn>
     </div>
 </div>
 
@@ -70,6 +69,7 @@
                     data-toggle="modal"
                     ng-click="getTarif(0)"
                     hint="Ajouter"
+                    always-on="true"
             ></ze-btn>
         </div>
 

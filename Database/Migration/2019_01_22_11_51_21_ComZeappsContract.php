@@ -62,9 +62,9 @@ class ComZeappsContract
 
             // Enrtreprise et/ou Contact
             $table->integer('id_entreprise', false, true)->default(0);
-            $table->integer('id_contract', false, true)->default(0);
+            $table->integer('id_contact', false, true)->default(0);
             $table->string('id_entreprise_label')->default('');
-            $table->string('id_contract_label')->default('');
+            $table->string('id_contact_label')->default('');
 
             $table->string('libelle');
             $table->string('numero_piece');

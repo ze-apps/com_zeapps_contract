@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Capsule\Manager as Capsule;
-use App\fr_soca_production\Models\Soca as OpportunityModel;
+use Zeapps\Core\Storage;
 
 
 class ComZeappsContractSeeds
@@ -88,6 +88,29 @@ class ComZeappsContractSeeds
             'compte_compta' => "compte_compta_2",
             'created_at'=>'2019-01-24',
             'updated_at'=>'2019-01-24',
+        ]);
+
+        ///////////////////////////////////////////////////////////////////////////////////////
+        /////////////////////////////////////// CONTRATS //////////////////////////////////////
+        ///////////////////////////////////////////////////////////////////////////////////////
+        ///
+        Capsule::table('com_zeapps_contract_contracts_souscrits')->insert([
+            'id_entreprise' => 1,
+            'id_contact' => 1,
+            'id_entreprise_label' => 'Apple',
+            'id_contact_label' => 'M. Steve Jobs',
+            'libelle' => 'Hébergement',
+            'numero_piece' => strtoupper(Storage::generateRandomString()),
+            'date_ouverture' => '2019-06-30',
+            'date_premiere_facturation' => '2019-07-15',
+            'date_facturation_suivante' => '2019-07-22',
+            'delai_renouvellement' => 30,
+            'statut' => 'Ouvert',
+            'commentaire' => 'Premier contrat avec ce client ...',
+            'id_contrat_type' => 1,
+            'id_contrat_type_tarif' => 1,
+            'created_at'=>'2019-01-28',
+            'updated_at'=>'2019-01-28',
         ]);
 
     }

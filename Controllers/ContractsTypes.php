@@ -139,7 +139,7 @@ class ContractsTypes extends Controller
 
     public function modal(Request $request)
     {
-        /*$limit = $request->input('limit', 15);
+        $limit = $request->input('limit', 15);
         $offset = $request->input('offset', 0);
 
         $filters = array() ;
@@ -149,33 +149,25 @@ class ContractsTypes extends Controller
             $filters = json_decode(file_get_contents('php://input'), true);
         }
 
-        $companies_rs = CompaniesModel::orderBy('company_name') ;
+        $contract_type_rs = ContractType::orderBy('libelle') ;
+
         foreach ($filters as $key => $value) {
             if (strpos($key, " LIKE")) {
                 $key = str_replace(" LIKE", "", $key);
-                $companies_rs = $companies_rs->where($key, 'like', '%' . $value . '%') ;
+                $contract_type_rs = $contract_type_rs->where($key, 'like', '%' . $value . '%') ;
             } else {
-                $companies_rs = $companies_rs->where($key, $value) ;
+                $contract_type_rs = $contract_type_rs->where($key, $value) ;
             }
         }
 
-        $total = $companies_rs->count();
+        $total = $contract_type_rs->count();
 
 
-        $companies = $companies_rs->limit($limit)->offset($offset)->get();
+        $contract_type = $contract_type_rs->limit($limit)->offset($offset)->get();
 
-        if(!$companies) {
-            $companies = array();
-        }*/
-
-
-
-        // TODO : à supprimer à codage
-        $total = 0 ;
-        $contract_type = array();
-        // TODO : à supprimer à codage
-
-
+        if(!$contract_type) {
+            $contract_type = array();
+        }
 
         echo json_encode(array("data" => $contract_type, "total" => $total));
     }
