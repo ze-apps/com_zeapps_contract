@@ -20,30 +20,25 @@ app.controller("ComZeappsContractsTypesViewCtrl", ["$scope", "$routeParams", "$l
         /*****************************************
          *** GET CONTRACT TYPE with his tarifs ***
          *****************************************/
-        if ($routeParams.id > 0) {
 
+        // TVA
+        zhttp.crm.taxe.get_all().then(function (response) {
+            if (response.status == 200) {
+                $scope.all_taux_tva = response.data;
+            }
+        });
+
+        if ($routeParams.id > 0) {
             $scope.titreContractsTypes = 'Configuration d\'un contrat';
 
             zhttp.contract.types_contracts.get($routeParams.id).then(function (response) {
-
                 if (response.status == 200) {
-
                     $scope.tarifs_contracts_types = response.data.tarifs_contracts_types;
-
-                    // TVA
-                    $scope.all_taux_tva = response.data.all_taux_tva;
-                    angular.forEach($scope.all_taux_tva, function (tva) {
-                        if ($scope.id_taux_tva == tva.id && $routeParams.id > 0) {
-                            $scope.id_taux_tva_value = tva.value;
-                        }
-                    });
-
                     // Set object values
                     $scope.contractTypeLibelle = response.data.contract_type.libelle;
                     $scope.contractTypeActif = response.data.contract_type.actif;
                 }
             });
-
         }
 
         /*********************
@@ -121,8 +116,13 @@ app.controller("ComZeappsContractsTypesViewCtrl", ["$scope", "$routeParams", "$l
              ***************/
             $scope.saveTarif = function()
             {
-                if ($scope.valueDureePeriodeTarif && $scope.valueDureeMinimaleTarif && $scope.valueTarifHT  &&
-                    $scope.fraisInstallation && $scope.fraisModification && $scope.fraisResiliation && $scope.compteCompta) {
+                if ($scope.valueDureePeriodeTarif &&
+                    $scope.valueDureeMinimaleTarif &&
+                    $scope.valueTarifHT && !isNaN($scope.valueTarifHT) &&
+                    $scope.fraisInstallation && !isNaN($scope.fraisInstallation) &&
+                    $scope.fraisModification && !isNaN($scope.fraisModification) &&
+                    $scope.fraisResiliation && !isNaN($scope.fraisResiliation) &&
+                    $scope.compteCompta) {
 
                     var parameters = {
                         'id' : id_tarif,

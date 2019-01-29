@@ -50,6 +50,23 @@ class ContractsTypesTarifs extends Controller
         echo $contract_type_tarif;
     }
 
+    public function updateList(Request $request)
+    {
+        $id = $request->input('id', 0);
+
+        if ($id > 0) {
+            // Tarifs
+            $contract_souscrit_tarifs = ContractTypeTarif::where('id_contract_type', $id)->get();
+            foreach ($contract_souscrit_tarifs as $contract_souscrit_tarif) {
+                $contract_souscrit_tarif->tarifs_formates = $contract_souscrit_tarif->duree_periode . ' mois - ' . $contract_souscrit_tarif->tarif_periode . ' €';
+            }
+        }
+
+        echo json_encode(array(
+            'contract_souscrit_tarifs' => $contract_souscrit_tarifs
+        ));
+    }
+
     public function delete(Request $request)
     {
         $id = $request->input('id', 0);

@@ -65,7 +65,8 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Tarif</label>
-                            <select class="form-control" ng-model="contractSouscritsTarifs">
+                            <select class="form-control" ng-model="form.id_contrat_type_tarif">
+                                <option ng-repeat="contractSouscritsTarif in form.contractSouscritsTarifs" ng-value="contractSouscritsTarif.id">@{{ contractSouscritsTarif.tarifs_formates }}</option>
                             </select>
                         </div>
                     </div>
@@ -78,10 +79,19 @@
 
 
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="form-group">
                     <label>Libellé</label>
                     <input type="text" placeholder="Ex : La meilleure personne" value="" ng-model="contractSouscritLibelle" class="form-control"/>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Statut</label>
+                    <select class="form-control" ng-model="contractSouscritStatut">
+                        <option>Ouvert</option>
+                        <option>Clôturé</option>
+                    </select>
                 </div>
             </div>
         </div>
@@ -97,20 +107,6 @@
         </div>
 
 
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label>Statut</label>
-                    <select class="form-control" ng-model="contractSouscritStatut">
-                        <option>Ouvert</option>
-                        <option>Clôturé</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-
-
         <div class="row">
 
             <div class="col-md-6">
@@ -118,7 +114,7 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label>Délai renouvellement</label>
-                            <select class="form-control" ng-model="contractSouscritsDelaiRenouvellement">
+                            <select class="form-control" ng-model="contractSouscritsDelaiRenouvellement" ng-change="updateDelaiRenouvellement()">
                                 <option>Le jour de la date d'échéance</option>
                                 <option>30 jours avant date d'échéance</option>
                                 <option>60 jours avant date d'échéance</option>

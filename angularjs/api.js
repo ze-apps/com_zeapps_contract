@@ -24,6 +24,7 @@ app.config(["$provide",
                 types_contracts_tarifs : {
                     get: get_contract_type_tarif,
                     save : save_contract_type_tarif,
+                    update : update_liste_tarifs,
                     delete : delete_contract_type_tarif,
                 }
 			};
@@ -110,6 +111,10 @@ app.config(["$provide",
                 return zeHttp.delete("/com_zeapps_contract/contracts/types/tarifs/delete/" + id);
             }
 
+            function update_liste_tarifs(id_contract_type_tarif)
+            {
+                return zeHttp.post("/com_zeapps_contract/contracts/types/tarifs/update_list/" + id_contract_type_tarif);
+            }
 
 		}]);
 	}]);

@@ -35,7 +35,7 @@
                                     <th class="col-md-2">N°</th>
                                     <th class="col-md-3">Libellé</th>
                                     <th class="col-md-2">Statut</th>
-                                    <th class="col-md-2">Prochaine echéance</th>
+                                    <th class="col-md-2">Prochaine échéance</th>
                                     <th class="col-md-1">Action</th>
                                 </tr>
                             </thead>

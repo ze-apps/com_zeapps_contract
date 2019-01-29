@@ -29,7 +29,7 @@ app.controller("ComZeappsContractsListCtrl", ["$scope", "$routeParams", "$locati
                     field: 'statut',
                     type: 'text',
                     label: 'Statut',
-                    options: ['Ouvert', 'Cloturé']
+                    options: []
                 }
             ]
         };
@@ -58,7 +58,7 @@ app.controller("ComZeappsContractsListCtrl", ["$scope", "$routeParams", "$locati
                 if (response.status == 200) {
 
                     if(context) {
-                        $scope.filters.main[0].options = [];
+                        $scope.filters.main[3].options = response.data.status;
                     }
 
                     $scope.contracts_souscrits = response.data.contracts_souscrits ;

@@ -72,7 +72,7 @@ class ComZeappsContract
             // Dates & délais
             $table->date('date_ouverture');
             $table->date('date_premiere_facturation');
-            $table->date('date_facturation_suivante');
+            $table->date('date_facturation_suivante')->nullable();
             $table->integer('delai_renouvellement');
 
             // Statut
