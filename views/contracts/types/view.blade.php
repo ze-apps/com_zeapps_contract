@@ -95,7 +95,7 @@
                     <tr ng-repeat="tarif in tarifs_contracts_types">
                         <td>#</td>
                         <td>@{{tarif.duree_periode}} mois</td>
-                        <td>@{{tarif.tarif_periode }} €</td>
+                        <td>@{{tarif.tarif_periode}} €</td>
                         <td>@{{tarif.id_taux_tva_value}} %</td>
                         <td>@{{tarif.duree_minimale_contract}} mois</td>
                         <td>@{{tarif.compte_compta}}</td>

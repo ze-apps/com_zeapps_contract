@@ -93,6 +93,15 @@ class ContractsTypes extends Controller
         // Taux TVA
         $all_taux_tva = Taxes::all();
 
+        // Format floats for vue
+        foreach ($tarifs_contracts_types as $tarif) {
+            $tarif->id_taux_tva_value = number_format($tarif->id_taux_tva_value, 2, ',', '.');
+            $tarif->tarif_periode = number_format($tarif->tarif_periode, 2, ',', '.');
+            $tarif->frais_resiliation = number_format($tarif->frais_resiliation, 2, ',', '.');
+            $tarif->frais_modification = number_format($tarif->frais_modification, 2, ',', '.');
+            $tarif->frais_installation = number_format($tarif->frais_installation, 2, ',', '.');
+        }
+
         echo json_encode(array(
             'tarifs_contracts_types' => $tarifs_contracts_types,
             'contract_type' => $contract_type,
