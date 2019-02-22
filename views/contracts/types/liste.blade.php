@@ -43,7 +43,7 @@
                                         </td>
                                         <td>
                                             <ze-btn id="editer"
-                                                    fa="pencil"
+                                                    fa="edit"
                                                     color="primary"
                                                     always-on="true"
                                                     ng-click="getTypeContract(contract_type.id)"></ze-btn>

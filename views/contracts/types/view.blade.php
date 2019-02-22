@@ -102,7 +102,7 @@
                         <td>
                             <ze-btn class="open-modalEditTarifContractType"
                                     id="edit_tarif_type_contract"
-                                    fa="pencil"
+                                    fa="edit"
                                     href="#modalEditTarifContractType"
                                     data-toggle="modal"
                                     ng-click="getTarif(tarif.id)"

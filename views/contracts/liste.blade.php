@@ -48,7 +48,7 @@
                                     <td>@{{contract.prochaine_echeance}}</td>
                                     <td>
                                         <ze-btn id="edit_contract"
-                                                fa="pencil"
+                                                fa="edit"
                                                 ng-click="getContract(contract.id)"
                                                 hint="Modifier"
                                                 direction="left"></ze-btn>
